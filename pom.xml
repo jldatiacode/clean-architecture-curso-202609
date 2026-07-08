@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Proyecto docente: Clean Architecture aplicada con Java
+  Curso de 16 horas - Sistema de gestión de cursos e inscripciones
+
+  Este pom.xml define un único proyecto Maven pensado para abrirse en Eclipse
+  (File > Import > Existing Maven Projects).
+
+  Decisiones importantes:
+  - Java 17: versión LTS requerida por el curso.
+  - Spring Boot como PARENT: gestiona versiones de dependencias coherentes.
+  - Sin Lombok: el código debe ser explícito y didáctico.
+  - spring-boot-starter-test ya incluye JUnit 5, Mockito y AssertJ.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.curso</groupId>
+    <artifactId>clean-architecture</artifactId>
+    <version>1.0.0</version>
+    <name>clean-architecture</name>
+    <description>Proyecto docente para el curso de Clean Architecture aplicada con Java</description>
+
+    <properties>
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <!-- Spring Web: SOLO se usa en la capa exterior (adaptadores de entrada REST).
+             El dominio y los casos de uso NO deben importar nada de este starter. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Data JPA: SOLO se usa en los adaptadores de salida de persistencia.
+             Las entidades de dominio NO llevan anotaciones @Entity. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- H2: base de datos en memoria para formación.
+             Es un DETALLE de infraestructura: cambiarla por PostgreSQL no debería
+             afectar al dominio ni a los casos de uso. -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Testing: incluye JUnit 5, Mockito, AssertJ, MockMvc y utilidades Spring Test. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Permite arrancar la aplicación con: ./mvnw spring-boot:run -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
