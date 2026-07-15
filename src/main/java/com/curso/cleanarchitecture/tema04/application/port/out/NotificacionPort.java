@@ -21,4 +21,7 @@ public interface NotificacionPort {
      * @param cursoId  identificador del curso en el que se ha inscrito
      */
     void enviarConfirmacionInscripcion(Long alumnoId, Long cursoId);
+    
+    /** Notifica que la solicitud de lista de espera ha sido registrada. */
+    void enviarConfirmacionListaEspera(Long alumnoId, Long cursoId);
 }

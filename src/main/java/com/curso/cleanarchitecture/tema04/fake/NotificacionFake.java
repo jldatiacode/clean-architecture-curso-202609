@@ -47,16 +47,27 @@ public class NotificacionFake implements NotificacionPort {
 
     /** Historial de notificaciones pedidas por los casos de uso. */
     private final List<NotificacionRegistrada> enviadas = new ArrayList<>();
+    private final List<NotificacionRegistrada> listaEsperaEnviadas = new ArrayList<>();
+    
+
 
     @Override
-    public void enviarConfirmacionInscripcion(Long alumnoId, Long cursoId) {
-        // Aquí un adaptador real conectaría con SMTP, Twilio, Kafka...
-        // El fake se limita a dejar constancia para que el test lo compruebe.
-        enviadas.add(new NotificacionRegistrada(alumnoId, cursoId));
+    public void enviarConfirmacionListaEspera(Long alumnoId, Long cursoId) {
+        listaEsperaEnviadas.add(new NotificacionRegistrada(alumnoId, cursoId));
     }
-
+    
     /** Vista de solo lectura del historial, para las aserciones de los tests. */
     public List<NotificacionRegistrada> getEnviadas() {
         return Collections.unmodifiableList(enviadas);
+    }
+    
+    /** Historial de confirmaciones de lista de espera. */
+    public List<NotificacionRegistrada> getListaEsperaEnviadas() {
+        return Collections.unmodifiableList(listaEsperaEnviadas);
+    }
+
+    @Override
+    public void enviarConfirmacionInscripcion(Long alumnoId, Long cursoId) {
+        enviadas.add(new NotificacionRegistrada(alumnoId, cursoId));
     }
 }

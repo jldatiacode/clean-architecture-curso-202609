@@ -80,6 +80,24 @@ public class Curso {
         return !cerrado && plazasDisponibles > 0;
     }
 
+    /**
+     * Valida que tenga sentido solicitar la incorporación a lista de espera.
+     *
+     * <p>La lista de espera solo se utiliza cuando el curso está abierto pero
+     * no quedan plazas. Si todavía hay plazas, debe realizarse una inscripción
+     * normal; si está cerrado, no se admite ninguna solicitud.</p>
+     */
+    public void validarPuedeSolicitarListaEspera() {
+        if (cerrado) {
+            throw new IllegalStateException(
+                    "No se puede solicitar lista de espera: el curso '" + nombre + "' está cerrado");
+        }
+        if (plazasDisponibles > 0) {
+            throw new IllegalStateException(
+                    "El curso '" + nombre + "' todavía tiene plazas; debe realizarse una inscripción directa");
+        }
+    }
+    
     public Long getId() {
         return id;
     }
