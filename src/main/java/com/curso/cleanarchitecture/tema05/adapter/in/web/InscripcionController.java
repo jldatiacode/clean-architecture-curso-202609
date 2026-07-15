@@ -38,6 +38,8 @@ import com.curso.cleanarchitecture.tema05.base.InscripcionResponse;
 @RequestMapping("/tema05/cursos")
 public class InscripcionController {
 
+//  app/tema05/cursos/10/inscripciones
+	
     /**
      * El controlador depende del PUERTO (interfaz), nunca de
      * {@code InscribirAlumnoUseCase} directamente. Así el adaptador de entrada
