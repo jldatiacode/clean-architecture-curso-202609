@@ -25,8 +25,10 @@ INSERT INTO alumnos (id, nombre, email) VALUES
 
 -- Ana (1) ya esta inscrita en el Curso de Clean Architecture (2).
 -- Por eso ese curso tiene 14 plazas: tenia 15 y una esta ocupada.
-INSERT INTO inscripciones (id, curso_id, alumno_id, fecha_inscripcion, estado) VALUES
-  (1, 2, 1, CURRENT_DATE, 'ACTIVA');
+INSERT INTO inscripciones
+    (id, curso_id, alumno_id, estado)
+VALUES
+    (1, 2, 1, 'ACTIVA');
 
 -- Las columnas id son IDENTITY (las genera la base de datos).
 -- Como hemos insertado ids fijos, reiniciamos los contadores para que los
