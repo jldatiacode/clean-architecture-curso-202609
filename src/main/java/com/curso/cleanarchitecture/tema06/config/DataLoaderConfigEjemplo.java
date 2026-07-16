@@ -66,6 +66,7 @@ public class DataLoaderConfigEjemplo {
             cursoRepository.save(new CursoJpaEntity(2L, "Spring Boot avanzado", 0, false));
             cursoRepository.save(new CursoJpaEntity(3L, "Arquitectura Hexagonal", 15, true));
 
+            //Optional<CursoJpaEntity> cursoEntity = cursoRepository.findById(1L);
             // Alumnos de ejemplo.
             alumnoRepository.save(new AlumnoJpaEntity(1L, "Ana García", "ana@email.com"));
             alumnoRepository.save(new AlumnoJpaEntity(2L, "Luis Pérez", "luis@email.com"));
